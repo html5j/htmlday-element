@@ -1,10 +1,68 @@
-<element name="htmlday"
-         attributes="">
+<!-- 
+	The custom element name identifies a custom element and is a sequence of alphanumeric ASCII characters that must match the NCName production and contain a U+002D HYPHEN-MINUS character.
+ -->
+<element name="htmlday">
   <template>
-    <h1>htmlday!</h1>
+  	<style>
+			@host {
+				* {
+					display: block;
+					width: 100%;
+				}
+			}
+			section {
+				position: relative;
+				overflow: hidden;
+			  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 121, color-stop(0.5, #e7594f), color-stop(0, #d9746d));
+			  background: -webkit-radial-gradient(50% 50%, circle, #d9746d 0%, #e7594f 50%);
+			  background: -moz-radial-gradient(50% 50%, circle, #d9746d 0%, #e7594f 50%);
+			  background: -o-radial-gradient(50% 50%, circle, #d9746d 0%, #e7594f 50%);
+			  background: -ms-radial-gradient(50% 50%, circle, #d9746d 0%, #e7594f 50%);
+			  background: radial-gradient(50% 50%, circle, #d9746d 0%, #e7594f 50%);
+			  padding: 1.8em 1em 1em;
+			  margin: 0;
+			}
+			img {
+				width: 100%;
+			}
+			#logo {
+				position: relative;
+				z-index: 1;
+			}
+			#effect {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin: -50% 0 0 -50%;
+				z-index: 0;
+			}
+			p {
+				position: relative;
+				text-align: center;
+				font-size: 1.2em;
+				color: white;
+				z-index: 1;
+				margin: 0;
+			}
+  	</style>
+  	<section>
+    	<h1>
+    		<img id="logo" src="http://www.htmlday.jp/images/logo_htmlday.svg" alt="&lt;htmlday&gt;">
+    		<img id="effect" src="http://www.htmlday.jp/images/header_bg.svg">
+    		<p><content></content></p>
+    	</h1>
+    </section>
   </template>
   <script>
     Polymer.register(this, {
+    	ready: function(){
+    		var effect = this.$.effect,
+    				deg = 0;
+    		setInterval(function(){
+    			effect.style.webkitTransform = 'rotate3d(0,0,1,' + deg + 'deg)';
+    			deg++;
+    		}, 1000/24);
+    	}
     });
   </script>
 </element>
